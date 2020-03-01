@@ -16,27 +16,36 @@ class List extends React.Component {
       totalPages: 0,
       page: 1,
     };
+
+    this.handlePaginationClick = this.handlePaginationClick.bind(this);
   }
 
   componentDidMount() {
+    this.fetchCurrencies();
+  }
+
+  fetchCurrencies() {
     this.setState({ loading: true });
 
     const { page } = this.state;
 
-    fetch(`${API_URL}/cryptocurrencies?page=${page}&perPage=20`)
-    .then(handleResponse)
-    .then((data) => {
-      this.setState({ 
-        currencies: data.currencies, 
-        loading: false, 
+    fetch(`${API_URL}/cryptocurrencies?page=${page}&perPage=10`)
+      .then(handleResponse)
+      .then((data) => {
+        const { currencies, totalPages } = data;
+
+        this.setState({
+          currencies,
+          totalPages,
+          loading: false,
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          error: error.erroMessage,
+          loading: false,
+        });
       });
-    })
-    .catch((error) => {
-      this.setState({ 
-        error: error.erroMessage, 
-        loading: false, 
-      });
-    });
   }
 
   renderChangePercent(percent) {
@@ -49,8 +58,19 @@ class List extends React.Component {
     }
   }
 
+  handlePaginationClick(direction) {
+    let nextPage = this.state.page;
+
+    nextPage = direction === 'next' ? nextPage + 1 : nextPage - 1;
+
+    this.setState({ page: nextPage }, () => {
+      this.fetchCurrencies();
+    });
+    
+  }
+
   render() {
-    const { loading, error, currencies } = this.state;
+    const { loading, error, currencies, page, totalPages } = this.state;
 
     // This will render only if loading state is set to true.
     if (loading) {
@@ -69,7 +89,11 @@ class List extends React.Component {
           renderChangePercent={this.renderChangePercent}
         />
 
-        <Pagination />
+        <Pagination 
+          page={page}
+          totalPages={totalPages}
+          handlePaginationClick={this.handlePaginationClick}
+        />
       </div>
     );
   }
