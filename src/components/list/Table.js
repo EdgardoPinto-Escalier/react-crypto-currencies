@@ -4,6 +4,7 @@ import './Table.css';
 
 const Table = (props) => {
   const { currencies, renderChangePercent } = props;
+  
 return (
   <div className="Table-container">
     <table className="Table">
