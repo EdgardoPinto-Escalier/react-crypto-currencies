@@ -7,9 +7,9 @@ const Table = (props) => {
   const { currencies, renderChangePercent, history } = props;
   
 return (
-  <div className="Table-container">
-    <table className="Table">
-      <thead className="Table-head">
+  <div className="tableContainer">
+    <table className="mainTable">
+      <thead className="tableHead">
         <tr>
           <th>CRYPTOCURRENCY</th>
           <th>PRICE</th>
@@ -17,22 +17,22 @@ return (
           <th>24H CHANGE</th>
         </tr>
       </thead>
-      <tbody className="Table-body">
+      <tbody className="tableBody">
         {currencies.map((currency) => (
           <tr 
             key={currency.id}
             onClick={() => history.push(`/currency/${currency.id}`)}
           >
             <td>
-              <span className="Table-rank">{currency.rank}</span>
+              <span className="tableRanking">{currency.rank}</span>
               {currency.name}
             </td>
             <td>
-              <span className="Table-dollar">$</span>
+              <span className="tableDollarSign">$</span>
               {currency.price}
             </td>
             <td>
-              <span className="Table-dollar">$</span>
+              <span className="tableDollarSign">$</span>
               {currency.marketCap}
             </td>
             <td>
