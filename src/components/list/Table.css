@@ -13,8 +13,6 @@
   background-color: #003d33;
 }
 
-
-
 .tableHead tr th {
   padding: 20px 30px;
   color: #fff;
@@ -46,4 +44,10 @@
   color: #fff;
   margin-right: 6px;
   font-weight: bold;
+}
+
+.fado {
+  font-size: 1.5rem;
+  vertical-align: middle;
+  padding-right: 5px;
 }

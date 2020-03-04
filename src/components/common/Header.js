@@ -1,9 +1,10 @@
 import React from 'react';
 import './Header.css';
+import { FaCoins } from "react-icons/fa";
 
 const Header = () => {
   return (
-    <div className="Header"><span>REACT CRYPTOCURRENCIES</span></div>
+    <div className="Header"><span><FaCoins /> REACT CRYPTOCURRENCIES</span></div>
   )
 }
 

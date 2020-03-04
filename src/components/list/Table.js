@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Table.css';
+import { FaDollarSign, FaMoneyBillAlt, FaChartBar, FaClock } from "react-icons/fa";
 
 const Table = (props) => {
   const { currencies, renderChangePercent, history } = props;
@@ -11,10 +12,10 @@ return (
     <table className="mainTable">
       <thead className="tableHead">
         <tr>
-          <th>CRYPTOCURRENCY</th>
-          <th>PRICE</th>
-          <th>MARKET CAP</th>
-          <th>24H CHANGE</th>
+          <th><FaDollarSign className="fado"/> CRYPTOCURRENCY</th>
+          <th><FaMoneyBillAlt className="fado"/> PRICE</th>
+          <th><FaChartBar className="fado"/> MARKET CAP</th>
+          <th><FaClock className="fado"/> 24H CHANGE</th>
         </tr>
       </thead>
       <tbody className="tableBody">
